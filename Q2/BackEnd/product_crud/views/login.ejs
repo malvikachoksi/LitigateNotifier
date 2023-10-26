@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <center>
+      <h3>Sign In</h3>
+      <form id="login-form">
+        
+        <label for="email"
+          >Email
+          <input type="email" name="email" id="email" />
+        </label>
+        <br /><br />
+
+        
+       
+        <label for="password"
+          >Password
+          <input type="password" name="password" id="password" />
+        </label>
+        <br /><br />
+       
+        <input type="button" value="SignIn" id="signin" />
+      </form>
+    </center>
+  </body>
+  <script>
+    $(document).ready(() => {
+      $("#signin").click(() => {
+        // alert("hello");
+        
+          var data = $("#login-form").serialize();
+          console.log(data);
+          alert(data);
+          $.ajax({
+            method: "POST",
+            url: "signin",
+            data: data,
+            success: (data) => {{
+                if(data.status==true)
+              alert(data.message);
+              document.cookie=`token=${data.data.token}`;
+              window.location.href='/api/get-products'
+            }
+            },
+            error: (data) => {
+              alert(data.message);
+            },
+          });
+    })
+    });
+  </script>
+</html>

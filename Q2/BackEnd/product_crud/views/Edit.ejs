@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+    <center>
+        <h3>Edit Product</h3>
+        <form action="http://localhost:3000/api/edit-product" method="POST">
+            
+                <input type="text" name="id"  style="display: none;" id="id" value="<%= data.id %>"  />
+             
+              <br /><br />
+          <label for="name">Name
+            <input type="text" name="name" id="name" value="<%= data.name %> " />
+          </label>
+          <br /><br />
+          <label for="qty">qty
+            <input type="number" name="qty" id="qty" value="<%= data.qty %>"  />
+          </label>
+          <br /><br />
+  
+          
+          <label for="price"
+            >Price
+            <input type="number" name="price" id="price" value="<%= data.price %>" />
+          </label>
+          <br /><br />
+          
+          <!-- <input type="button" value="Edit Product" id="product" /> -->
+          <input type="submit" value="Edit Procuct">
+        </form>
+      </center>
+
+    
+</body>
+
+<!-- <script>
+    $(document).ready(()=>{
+
+        $('#product').click(()=>{
+            console.log('hello');
+            var data=$('#product-form').serialize();
+            console.log(data);
+
+$.ajax({
+    method:"POST",
+    url:"product",
+    data:data,
+    success:function(data){
+
+    }
+})
+        })
+        
+    })
+</script> -->
+</html>

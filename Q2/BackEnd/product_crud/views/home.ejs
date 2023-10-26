@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Procuct Details</h1>
+    <a href="product">Add Product</a>
+    <table>
+        <tbody>
+            <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Image</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+        </tr>
+
+        <% if(data)
+            
+            data.map((e)=>{
+            %>
+
+            <tr>
+                <td><%=e.name%></td>
+                <td><%=e.price%></td>
+                <td><%=e.qty%></td>
+                <td><img src="../public/uploads/Capture.PNG" height="100px" width="100px"/></td>
+                <th> <a href="http://localhost:3000/api/get-product?id=<%= e._id%>">Edit</a> </th>
+                <th> <a href="http://localhost:3000/api/delete-product?id=<%= e._id%>">Delete</a> </th>
+            </tr>
+<% })%>    
+        </tbody>
+    </table>
+</body>
+
+</html>

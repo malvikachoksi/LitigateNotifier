@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <center>
+      <h3>Sign Up</h3>
+      <form id="register-form">
+        <label for="name"
+          >Name
+          <input type="text" name="name" id="name" />
+        </label>
+        <br /><br />
+        <label for="email"
+          >Email
+          <input type="email" name="email" id="email" />
+        </label>
+        <br /><br />
+
+        <label for="phone_number"
+          >Phone Number
+          <input type="text" name="phone_number" id="phone_number" />
+        </label>
+        <br /><br />
+        <label for="profile_pic"
+          >Profile_Picture
+          <input type="file" name="profile_pic" id="profile_pic" />
+        </label>
+        <br /><br />
+        <label for="password"
+          >Password
+          <input type="password" name="password" id="password" />
+        </label>
+        <br /><br />
+        <label for="cpassword"
+          >Confirm Password
+          <input type="cpassword" name="cpassword" id="cpassword" />
+        </label>
+        <br /><br />
+        <input type="button" value="SignUp" id="signup" />
+      </form>
+    </center>
+  </body>
+  <script>
+    $(document).ready(() => {
+      $("#signup").click(() => {
+        // alert("hello");
+        if ($("#password").val() != $("#cpassword").val()) {
+          alert("password and confirm password must be same");
+        } else {
+          var data = $("#register-form").serialize();
+          console.log(data);
+          alert(data);
+          $.ajax({
+            method: "POST",
+            url: "signup",
+            data: data,
+            success: (data) => {
+              alert(data.message);
+              document.cookie=`token=${data.data.token}`;
+              window.location=('home')
+            },
+            error: (data) => {
+              alert(data.message);
+            },
+          });
+        }
+      });
+    });
+  </script>
+</html>

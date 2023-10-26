@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <center>
+      <h3>Add Product</h3>
+      <form id="product-form" enctype="multipart/form-data">
+        <label for="name"
+          >Name
+          <input type="text" name="name" id="name" />
+        </label>
+        <br /><br />
+        <label for="qty"
+          >qty
+          <input type="number" name="qty" id="qty" />
+        </label>
+        <br /><br />
+
+        <label for="price"
+          >Price
+          <input type="number" name="price" id="price" />
+        </label>
+        <br /><br />
+        <label for="file"
+          >Image
+          <input type="file" name="files" id="files" multiple />
+        </label>
+        <br /><br />
+
+        <input type="button" value="Add Product" id="product" />
+      </form>
+    </center>
+  </body>
+
+  <script>
+    $(document).ready(() => {
+      $("#product").click(() => {
+        console.log("hello");
+        var data = new FormData($("form")[0]);
+        console.log(data);
+        var t=document.cookie;
+        var token=t.split("=")[1];
+        $.ajax({
+          method: "POST",
+          url: "product",
+          headers:{Authorization:`Bearer ${token}`},
+          contentType: false,
+          processData: false,
+          data: data,
+          success: function (data) {
+            alert(data.message);
+          },
+          error:function(err){
+            console.log();
+            alert(err.responseJSON.message);
+            window.location.href="/api/signin"
+          }
+        });
+      });
+    });
+  </script>
+</html>
